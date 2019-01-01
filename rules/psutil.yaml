@@ -1,0 +1,9 @@
+# Disk Usage
+disks:
+  root: '/'
+
+# Type 1:last minute, 5:last five minutes, 15:last fifteen minutes
+cpu:
+  cpu_avg_interval: 5
+  warning: 10
+  critical: 20
