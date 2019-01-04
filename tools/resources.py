@@ -1,7 +1,11 @@
 import psutil
 import os
+import socket
 
 class Resources():
+	def hostname(self):
+        	self.hostname=(socket.gethostname())
+        	return self.hostname
 
 	def ListPartitions(self):
 		self.partitions_list = []
@@ -48,7 +52,7 @@ class Resources():
 		meminfo['buffers']=memory.buffers/1024/1024
 		meminfo['cached']=memory.cached/1024/1024
 		meminfo['active']=memory.active/1024/1024
-		meminfo['inactive']=memory.inactive/1024/1024		
+		meminfo['inactive']=memory.inactive/1024/1024
 		return meminfo
 
 	def Swap(self):
@@ -63,5 +67,6 @@ class Resources():
 	def LoadAvarage(self, interval):
 		self.interval=interval
 		return os.getloadavg()[interval]
+
 
 x = Resources()

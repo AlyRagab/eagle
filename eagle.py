@@ -4,6 +4,8 @@ import time
 import os
 
 from tools import resources as res
+from tools import joutput as jout
+from tools import es
 import config as cf
 import messages as msg
 import alerts as alert
@@ -12,6 +14,7 @@ import alerts as alert
 x = res.Resources()
 hostname=(socket.gethostname())
 date=time.time()
+jsonout=cf.main_configuration['json_output']
 
 def GetDisks():
 	values=[]
@@ -59,10 +62,23 @@ def DiskMsg():
                         warn=msg.DiskPercent(partition, percent, hostname)
                         return alert.Slack(warn , 'Alarm', 'danger', 'high', str(date))
 
+def JsonOut(filename, func, dictname):
+	if jsonout=='enable':
+		return jout.json_output(filename, func, dictname)
+	elif jsonout=='disable':
+		pass
+	else:
+		msg='json_out should be enable or disable'
+		return 
+
+
+
 def Main():
 	CpuMsg()
 	MemoryMsg()
 	SwapMsg()
 	DiskMsg()
+	JsonOut('meminfo.json', x.MemoryUsage(), 'memory')
+	es.Elastic()
 if __name__ == '__main__':
 	Main()

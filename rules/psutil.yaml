@@ -2,7 +2,7 @@
 disks:
   root: '/'
 
-# Type 1:last minute, 5:last five minutes, 15:last fifteen minutes
+# Type 1:last minute, 5:5 minutes, 15:15 minutes
 cpu:
   cpu_avg_interval: 5
   warning: 10

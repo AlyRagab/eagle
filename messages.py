@@ -18,3 +18,4 @@ def CpuLoadAvg(avarage, hostname):
 	danger="average cpu load is "+str(avarage)+" on "+hostname
 	return danger
 
+#print CpuLoadAvg("20", "backup.remal.com")
